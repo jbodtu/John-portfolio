@@ -1,0 +1,332 @@
+
+/* =========================================
+   1. GLOBAL SETTINGS
+   ========================================= */
+
+:root {
+    --page-background: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+
+    --nav-background: rgba(45, 45, 48, 0.78);
+    --nav-text: #f5f5f7;
+
+    --banner-background: #e8e8ed;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 65px;
+}
+
+body {
+    margin: 0;
+    background: var(--page-background);
+    color: var(--text-primary);
+
+    font-family: -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2 {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   2. TOP NAVIGATION
+   ========================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: var(--nav-background);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    min-height: 48px;
+    padding: 0 24px;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-links a {
+    flex-shrink: 0;
+
+    color: var(--nav-text);
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   3. ABOUT SECTION
+   ========================================= */
+
+.about-section {
+    padding-top: 115px;
+    padding-bottom: 60px;
+
+    text-align: center;
+}
+
+.intro {
+    padding: 20px 24px 42px;
+}
+
+.profession {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+}
+
+.intro h1 {
+    margin-bottom: 32px;
+
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+}
+
+
+/* Three equal circular photographs */
+
+.profile-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+
+.profile-images img {
+    display: block;
+
+    width: 170px;
+    height: 170px;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   4. ABOUT SUMMARY BANNER
+   ========================================= */
+
+.summary-banner {
+    width: 100%;
+    padding: 25px 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    background: var(--banner-background);
+    border-radius: 18px;
+}
+
+.summary-banner p {
+    max-width: 900px;
+    margin: 0;
+
+    line-height: 1.6;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+
+/* =========================================
+   5. CONTENT SECTIONS
+   Each section occupies its own row.
+   ========================================= */
+
+.content-section {
+    width: 100%;
+    min-height: 75vh;
+    padding: 75px 24px 55px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    scroll-margin-top: 48px;
+}
+
+.content-section h2 {
+    margin-bottom: 30px;
+
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+}
+
+
+/* Common placeholder dimensions */
+
+.placeholder {
+    width: 80%;
+    height: 50vh;
+    min-height: 300px;
+
+    border-radius: 24px;
+    padding: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* EDUCATION: BLUE */
+
+.education-box {
+    background: #cfe4ff;
+    color: #204d85;
+}
+
+
+/* WORK EXPERIENCE: ORANGE */
+
+.work-box {
+    background: #ffdfbd;
+    color: #814314;
+}
+
+
+/* PROJECTS: GREEN */
+
+.projects-box {
+    background: #cdebd5;
+    color: #205d35;
+}
+
+
+/* LEADERSHIP: PINK */
+
+.leadership-box {
+    background: #f7d5e6;
+    color: #87365c;
+}
+
+
+/* LANGUAGES: RED */
+
+.languages-box {
+    background: #f5c9c9;
+    color: #873838;
+}
+
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+
+footer {
+    padding: 28px 20px;
+
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   7. RESPONSIVE DESIGN
+   Smaller screens, including phones
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 0 18px;
+    }
+
+    .about-section {
+        padding-top: 90px;
+    }
+
+    .profession {
+        font-size: 18px;
+    }
+
+    .intro h1 {
+        font-size: 36px;
+    }
+
+    .profile-images {
+        gap: 16px;
+    }
+
+    .profile-images img {
+        width: min(25vw, 125px);
+        height: min(25vw, 125px);
+    }
+
+    .summary-banner {
+        padding: 24px 18px;
+    }
+
+    .summary-banner p {
+        font-size: 14px;
+    }
+
+    .content-section h2 {
+        font-size: 28px;
+    }
+
+    .placeholder {
+        width: 90%;
+        min-height: 260px;
+        border-radius: 20px;
+        font-size: 17px;
+    }
+}
