@@ -450,6 +450,11 @@ footer {
     border-radius: 16px;
 
     -webkit-user-drag: none;
+   
+}
+video.module-image {
+    object-fit: contain;
+    background: #000;
 }
 
 @keyframes module-fade-in {
