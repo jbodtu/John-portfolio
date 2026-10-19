@@ -314,7 +314,7 @@ if (workViewport) {
     let startY = 0;
 
     function showWorkCard(index) {
-        workIndex = Math.max(0, Math.min(index, workCards.length - 1));
+        workIndex = (index + workCards.length) % workCards.length;
 
         workCards.forEach((card, i) => {
             card.classList.toggle("active", i === workIndex);
@@ -332,8 +332,7 @@ if (workViewport) {
             `${String(workIndex + 1).padStart(2, "0")} / ` +
             `${String(workCards.length).padStart(2, "0")}`;
 
-        workPrevious.disabled = workIndex === 0;
-        workNext.disabled = workIndex === workCards.length - 1;
+
     }
 
     workPrevious.addEventListener("click", () => {
