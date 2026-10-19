@@ -597,20 +597,26 @@ video.module-image {
 }
 
 .work-carousel-card {
-    flex: 0 0 60vw;
-    width: 60vw;
-    max-width: 680px;
+    flex: 0 0 calc((80vw - 28px) / 2);
+    width: calc((80vw - 28px) / 2);
+    max-width: none;
     min-width: 0;
+
     opacity: 0.65;
-    transform: scale(0.94);
-    transition: opacity 0.45s ease, transform 0.45s ease;
+    filter: blur(2px) brightness(0.75);
+    transform: scale(0.96);
+
+    transition:
+        opacity 0.45s ease,
+        filter 0.45s ease,
+        transform 0.45s ease;
 }
 
 .work-carousel-card.active {
     opacity: 1;
+    filter: blur(0) brightness(1);
     transform: scale(1);
 }
-
 .work-carousel-card h3 {
     margin-top: 0;
 }
