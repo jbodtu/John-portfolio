@@ -574,3 +574,66 @@ video.module-image {
         transition: none;
     }
 }
+
+
+/* =========================================
+   WORK EXPERIENCE: THREE-CARD CAROUSEL
+   ========================================= */
+
+.work-carousel-viewport {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    padding: 12px 0 20px;
+}
+
+.work-carousel-track {
+    display: flex;
+    align-items: stretch;
+    gap: 28px;
+    width: max-content;
+    transform: translateX(0);
+    transition: transform 0.45s ease;
+}
+
+.work-carousel-card {
+    flex: 0 0 60vw;
+    width: 60vw;
+    max-width: 680px;
+    min-width: 0;
+    opacity: 0.65;
+    transform: scale(0.94);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.work-carousel-card.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.work-carousel-card h3 {
+    margin-top: 0;
+}
+
+.work-carousel-controls {
+    margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+    .work-carousel-card {
+        flex-basis: 78vw;
+        width: 78vw;
+        padding: 26px 22px;
+    }
+
+    .work-carousel-track {
+        gap: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .work-carousel-track,
+    .work-carousel-card {
+        transition: none;
+    }
+}
