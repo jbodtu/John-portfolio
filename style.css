@@ -637,3 +637,83 @@ video.module-image {
         transition: none;
     }
 }
+
+
+
+/* =========================================
+   WORK EXPERIENCE CAROUSEL
+   ========================================= */
+
+const workViewport = document.getElementById("work-carousel-viewport");
+
+if (workViewport) {
+    const workTrack = document.getElementById("work-carousel-track");
+    const workCards = Array.from(
+        workTrack.querySelectorAll(".work-carousel-card")
+    );
+    const workPrevious = document.getElementById("work-previous");
+    const workNext = document.getElementById("work-next");
+    const workCounter = document.getElementById("work-counter");
+
+    let workIndex = 1;
+    let startX = 0;
+    let startY = 0;
+
+    function showWorkCard(index) {
+        workIndex = Math.max(0, Math.min(index, workCards.length - 1));
+
+        workCards.forEach((card, i) => {
+            card.classList.toggle("active", i === workIndex);
+        });
+
+        const card = workCards[workIndex];
+        const offset =
+            workViewport.clientWidth / 2 -
+            card.offsetLeft -
+            card.offsetWidth / 2;
+
+        workTrack.style.transform = `translateX(${offset}px)`;
+
+        workCounter.textContent =
+            `${String(workIndex + 1).padStart(2, "0")} / ` +
+            `${String(workCards.length).padStart(2, "0")}`;
+
+        workPrevious.disabled = workIndex === 0;
+        workNext.disabled = workIndex === workCards.length - 1;
+    }
+
+    workPrevious.addEventListener("click", () => {
+        showWorkCard(workIndex - 1);
+    });
+
+    workNext.addEventListener("click", () => {
+        showWorkCard(workIndex + 1);
+    });
+
+    workViewport.addEventListener("touchstart", (event) => {
+        if (event.touches.length !== 1) return;
+
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    }, { passive: true });
+
+    workViewport.addEventListener("touchend", (event) => {
+        if (event.changedTouches.length !== 1) return;
+
+        const differenceX = event.changedTouches[0].clientX - startX;
+        const differenceY = event.changedTouches[0].clientY - startY;
+
+        if (
+            Math.abs(differenceX) > 45 &&
+            Math.abs(differenceX) > Math.abs(differenceY)
+        ) {
+            showWorkCard(workIndex + (differenceX < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+        showWorkCard(workIndex);
+    });
+
+    showWorkCard(1);
+}
