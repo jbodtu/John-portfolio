@@ -905,3 +905,44 @@ video.module-image {
 .project-skills-heading {
     min-height: 20px;
 }
+
+
+/* Keep skill images at their original aspect ratio */
+.project-skill-card img,
+.project-skill-card .project-skill-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.project-skill-card .project-skill-media {
+    background: #000;
+}
+
+/* Align the two Skills & Technologies headings */
+.project-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    min-height: 5.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-overview {
+    min-height: 220px;
+}
+
+.project-divider {
+    margin-top: 26px;
+}
+
+.project-skills-heading {
+    min-height: 20px;
+}
