@@ -370,3 +370,82 @@ if (workViewport) {
 
     showWorkCard(1);
 }
+
+
+
+/* =========================================
+   PROJECT SKILLS CAROUSELS
+   ========================================= */
+
+document.querySelectorAll(".project-carousel").forEach((carousel) => {
+    const track = carousel.querySelector(".project-carousel-track");
+    const cards = Array.from(
+        track.querySelectorAll(".project-skill-card")
+    );
+
+    const carouselId = carousel.id;
+    const counter = document.getElementById(
+        carouselId === "year3-carousel"
+            ? "year3-counter"
+            : "year4-counter"
+    );
+
+    const buttons = document.querySelectorAll(
+        `[data-project-carousel="${carouselId}"]`
+    );
+
+    let currentIndex = 1;
+    let startX = 0;
+    let startY = 0;
+
+    function showCard(index) {
+        currentIndex = (index + cards.length) % cards.length;
+
+        cards.forEach((card, i) => {
+            card.classList.toggle("active", i === currentIndex);
+        });
+
+        const activeCard = cards[currentIndex];
+        const offset =
+            carousel.clientWidth / 2 -
+            activeCard.offsetLeft -
+            activeCard.offsetWidth / 2;
+
+        track.style.transform = `translateX(${offset}px)`;
+
+        counter.textContent =
+            `${String(currentIndex + 1).padStart(2, "0")} / ` +
+            `${String(cards.length).padStart(2, "0")}`;
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            showCard(
+                currentIndex + Number(button.dataset.direction)
+            );
+        });
+    });
+
+    carousel.addEventListener("touchstart", (event) => {
+        if (event.touches.length !== 1) return;
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", (event) => {
+        if (event.changedTouches.length !== 1) return;
+
+        const dx = event.changedTouches[0].clientX - startX;
+        const dy = event.changedTouches[0].clientY - startY;
+
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            showCard(currentIndex + (dx < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+        showCard(currentIndex);
+    });
+
+    showCard(currentIndex);
+});
