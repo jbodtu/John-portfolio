@@ -976,3 +976,50 @@ video.module-image {
         max-width: 100%;
     }
 }
+
+
+
+/* Project overview */
+.project-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+}
+
+/* Project information on the left */
+.project-information {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.project-information p {
+    width: 100%;
+    margin: 0;
+}
+
+/* Project images on the right */
+.project-main-image {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto !important;
+    max-height: none;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    justify-self: center;
+    align-self: center;
+    border-radius: 12px;
+}
+
+/* Mobile layout */
+@media (max-width: 500px) {
+    .project-overview {
+        gap: 12px;
+    }
+
+    .project-main-image {
+        max-width: 100%;
+    }
+}
