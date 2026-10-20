@@ -1,3 +1,780 @@
+/* =========================================
+   1. GLOBAL SETTINGS
+   ========================================= */
+
+:root {
+    --page-background: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+
+    --nav-background: rgba(45, 45, 48, 0.78);
+    --nav-text: #f5f5f7;
+
+    --banner-background: #e8e8ed;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 65px;
+}
+
+body {
+    margin: 0;
+    background: var(--page-background);
+    color: var(--text-primary);
+
+    font-family: -apple-system, BlinkMacSystemFont,
+        "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2 {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   2. TOP NAVIGATION
+   ========================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: var(--nav-background);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    min-height: 48px;
+    padding: 0 24px;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-links a {
+    flex-shrink: 0;
+
+    color: var(--nav-text);
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 0.65;
+}
+
+
+/* =========================================
+   3. ABOUT SECTION
+   ========================================= */
+
+.about-section {
+    padding-top: 115px;
+    padding-bottom: 60px;
+
+    text-align: center;
+}
+
+.intro {
+    padding: 20px 24px 42px;
+}
+
+.profession {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+}
+
+.intro h1 {
+    margin-bottom: 32px;
+
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+}
+
+
+/* Three equal circular photographs */
+
+.profile-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+
+.profile-images img {
+    display: block;
+
+    width: 170px;
+    height: 170px;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   4. ABOUT SUMMARY BANNER
+   ========================================= */
+
+.summary-banner {
+    width: 100%;
+    padding: 25px 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    background: var(--banner-background);
+    border-radius: 18px;
+}
+
+.summary-banner p {
+    max-width: 900px;
+    margin: 0;
+
+    line-height: 1.6;
+    font-size: 15px;
+    color: var(--text-primary);
+}
+
+
+/* =========================================
+   5. CONTENT SECTIONS
+   Each section occupies its own row.
+   ========================================= */
+
+.content-section {
+    width: 100%;
+    min-height: 75vh;
+    padding: 75px 24px 55px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    scroll-margin-top: 48px;
+}
+
+.content-section h2 {
+    margin-bottom: 30px;
+
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+}
+
+
+/* Common placeholder dimensions */
+
+.placeholder {
+    width: 80%;
+    height: 50vh;
+    min-height: 300px;
+
+    border-radius: 24px;
+    padding: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* EDUCATION: BLUE */
+
+.education-box {
+    background: #cfe4ff;
+    color: #204d85;
+}
+
+
+/* WORK EXPERIENCE: ORANGE */
+
+.work-box {
+    background: #ffdfbd;
+    color: #814314;
+}
+
+
+/* PROJECTS: GREEN */
+
+.projects-box {
+    background: #cdebd5;
+    color: #205d35;
+}
+
+
+/* LEADERSHIP: PINK */
+
+.leadership-box {
+    background: #f7d5e6;
+    color: #87365c;
+}
+
+
+/* LANGUAGES: RED */
+
+.languages-box {
+    background: #f5c9c9;
+    color: #873838;
+}
+
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+
+footer {
+    padding: 28px 20px;
+
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   7. RESPONSIVE DESIGN
+   Smaller screens, including phones
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 0 18px;
+    }
+
+    .about-section {
+        padding-top: 90px;
+    }
+
+    .profession {
+        font-size: 18px;
+    }
+
+    .intro h1 {
+        font-size: 36px;
+    }
+
+    .profile-images {
+        gap: 16px;
+    }
+
+    .profile-images img {
+        width: min(25vw, 125px);
+        height: min(25vw, 125px);
+    }
+
+    .summary-banner {
+        padding: 24px 18px;
+    }
+
+    .summary-banner p {
+        font-size: 14px;
+    }
+
+    .content-section h2 {
+        font-size: 28px;
+    }
+
+    .placeholder {
+        width: 90%;
+        min-height: 260px;
+        border-radius: 20px;
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================
+   EDUCATION: TWO-CARD LAYOUT
+   ========================================= */
+
+.education-cards {
+    width: 80%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: stretch;
+    text-align: center;
+}
+
+.education-card {
+    min-width: 0;
+    padding: 30px 26px;
+
+    background: #f5f5f7;
+    color: #1d1d1f;
+
+    border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.education-card h3 {
+    margin: 0 0 12px;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.education-card h4 {
+    margin: 0 0 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.education-card p {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.course-details {
+    color: #6e6e73;
+}
+
+.education-divider {
+    width: 55%;
+    height: 1px;
+
+    margin: 24px 0;
+
+    background: #d2d2d7;
+}
+
+
+/* =========================================
+   MODULE CAROUSEL
+   ========================================= */
+
+.module-card {
+    justify-content: flex-start;
+}
+
+.module-carousel {
+    width: 100%;
+    min-width: 0;
+
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.module-slide {
+    display: none;
+    width: 100%;
+    animation: module-fade-in 0.3s ease;
+}
+
+.module-slide.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.module-slide h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.module-description {
+    width: 100%;
+    margin-bottom: 20px !important;
+}
+
+.module-image {
+    display: block;
+
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+    border-radius: 16px;
+
+    -webkit-user-drag: none;
+   
+}
+video.module-image {
+    object-fit: contain;
+    background: #000;
+}
+
+@keyframes module-fade-in {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   CAROUSEL ARROWS AND COUNTER
+   ========================================= */
+
+.carousel-controls {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    margin-top: 22px;
+}
+
+.carousel-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d2d2d7;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #1d1d1f;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.carousel-button:hover {
+    background: #e8e8ed;
+}
+
+.carousel-button:active {
+    transform: scale(0.94);
+}
+
+.carousel-button:focus-visible {
+    outline: 2px solid #0071e3;
+    outline-offset: 3px;
+}
+
+.carousel-counter {
+    color: #6e6e73;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.carousel-hint {
+    margin-top: 12px !important;
+    color: #6e6e73;
+    font-size: 11px !important;
+}
+
+
+/* =========================================
+   MOBILE EDUCATION LAYOUT
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .education-cards {
+        width: 90%;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+    }
+
+    .education-card {
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+
+    .education-divider {
+        margin: 20px 0;
+    }
+
+    .module-image {
+        max-width: 100%;
+    }
+
+    .carousel-controls {
+        gap: 28px;
+    }
+}
+
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .module-slide {
+        animation: none;
+    }
+
+    .carousel-button {
+        transition: none;
+    }
+}
+
+
+/* =========================================
+   WORK EXPERIENCE: THREE-CARD CAROUSEL
+   ========================================= */
+
+.work-carousel-viewport {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    padding: 12px 0 20px;
+}
+
+.work-carousel-track {
+    display: flex;
+    align-items: stretch;
+    gap: 28px;
+    width: max-content;
+    transform: translateX(0);
+    transition: transform 0.45s ease;
+}
+
+.work-carousel-card {
+    flex: 0 0 calc((80vw - 28px) / 2);
+    width: calc((80vw - 28px) / 2);
+    max-width: none;
+    min-width: 0;
+
+    opacity: 0.65;
+    filter: blur(2px) brightness(0.75);
+    transform: scale(0.96);
+
+    transition:
+        opacity 0.45s ease,
+        filter 0.45s ease,
+        transform 0.45s ease;
+}
+
+.work-carousel-card.active {
+    opacity: 1;
+    filter: blur(0) brightness(1);
+    transform: scale(1);
+}
+.work-carousel-card h3 {
+    margin-top: 0;
+}
+
+.work-carousel-controls {
+    margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+    .work-carousel-card {
+        flex-basis: 78vw;
+        width: 78vw;
+        padding: 26px 22px;
+    }
+
+    .work-carousel-track {
+        gap: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .work-carousel-track,
+    .work-carousel-card {
+        transition: none;
+    }
+}
+
+
+
+
+
+/* =========================================
+   PROJECTS: TWO PROJECT PANELS
+   ========================================= */
+
+.projects-grid {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: start;
+    text-align: left;
+}
+
+.project-panel {
+    min-width: 0;
+    padding: 26px;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.project-title {
+    min-height: 3.2em;
+    margin: 0 0 22px;
+    font-size: 19px;
+    line-height: 1.45;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    text-align: center;
+}
+
+/* Project overview: equal-width columns, independent heights */
+.project-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+}
+
+/* Centre the project information vertically */
+.project-information {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.project-information p {
+    margin: 0;
+    width: 100%;.project-information h4,
+.project-skills-heading {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.project-information p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.project-main-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #e3e3e8;
+}
+
+.project-divider {
+    width: 100%;
+    height: 1px;
+    margin: 26px 0 22px;
+    background: #d2d2d7;
+}
+
+.project-skills-heading {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   PROJECT SKILLS: LANDSCAPE CAROUSEL
+   ========================================= */
+
+.project-carousel {
+    width: calc(100% + 52px);
+    margin-left: -26px;
+    overflow: hidden;
+    padding: 8px 0 12px;
+    touch-action: pan-y;
+}
+
+.project-carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    transition: transform 0.4s ease;
+}
+
+/* =========================================
+   PROJECT SKILL CARDS
+   ========================================= */
+
+.project-skill-card {
+    flex: 0 0 65%;
+    width: 65%;
+    min-width: 0;
+    align-self: flex-start;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 16px;
+    border-radius: 16px;
+    background: #e8e8ed;
+
+    opacity: 0.6;
+    filter: brightness(0.8) blur(1.5px);
+    transform: scale(0.96);
 
     transition:
         opacity 0.4s ease,
@@ -13,29 +790,20 @@
 
 .project-skill-title {
     margin: 0;
-    color: var(--text-primary);
+    color: #1d1d1f;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.4;
     text-align: center;
 }
 
-/* Images and videos retain their intrinsic aspect ratios. */
-.project-skill-card img,
-.project-skill-card video,
-.project-skill-card .project-skill-media {
+.project-skill-card img {
     display: block;
     width: 100%;
     height: auto;
-    max-width: 100%;
     aspect-ratio: auto;
     object-fit: contain;
     border-radius: 10px;
-}
-
-.project-skill-card video,
-.project-skill-card .project-skill-media {
-    background: #000;
 }
 
 .project-skill-description {
@@ -46,7 +814,6 @@
     text-align: left;
     overflow-wrap: anywhere;
 }
-
 .project-carousel-controls {
     display: flex;
     justify-content: center;
@@ -59,16 +826,33 @@
     flex-shrink: 0;
 }
 
-/* Project layout on tablets and phones */
 @media (max-width: 900px) {
     .projects-grid {
         width: 90%;
         grid-template-columns: minmax(0, 1fr);
         gap: 24px;
     }
+
+    .project-panel {
+        padding: 26px;
+    }
+
+    .project-carousel {
+        width: calc(100% + 52px);
+        margin-left: -26px;
+    }
+
+    .project-skill-card {
+        flex-basis: 65%;
+        width: 65%;
+    }
 }
 
 @media (max-width: 500px) {
+    .project-overview {
+        gap: 12px;
+    }
+
     .project-panel {
         padding: 20px;
         border-radius: 20px;
@@ -78,17 +862,9 @@
         font-size: 17px;
     }
 
-    .project-overview {
-        gap: 12px;
-    }
-
     .project-information p {
         font-size: 11px;
         line-height: 1.7;
-    }
-
-    .project-main-image {
-        max-width: 100%;
     }
 
     .project-carousel {
@@ -101,7 +877,7 @@
         width: 72%;
     }
 
-    .project-skill-title {
+    .project-skill-overlay h5 {
         font-size: 12px;
     }
 }
@@ -113,3 +889,89 @@
     }
 }
 
+
+/* Align project headings and skill sections */
+
+.project-title {
+    min-height: 5.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-overview {
+    min-height: 220px;
+}
+
+.project-divider {
+    margin-top: 26px;
+}
+
+.project-skills-heading {
+    min-height: 20px;
+}
+
+
+/* Keep skill images at their original aspect ratio */
+.project-skill-card img,
+.project-skill-card .project-skill-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.project-skill-card .project-skill-media {
+    background: #000;
+}
+
+/* Align the two Skills & Technologies headings */
+.project-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    min-height: 5.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-overview {
+    min-height: 220px;
+}
+
+.project-divider {
+    margin-top: 26px;
+}
+
+.project-skills-heading {
+    min-height: 20px;
+}
+
+/* Keep each main project image's original aspect ratio */
+.project-main-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 260px;
+    justify-self: center;
+    align-self: center;
+    object-fit: contain;
+    aspect-ratio: auto;
+    border-radius: 12px;
+}
+
+/* Smaller screens */
+@media (max-width: 500px) {
+    .project-overview {
+        gap: 12px;
+    }
+
+    .project-main-image {
+        max-width: 100%;
+    }
+}
