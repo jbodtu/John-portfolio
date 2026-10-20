@@ -792,13 +792,14 @@ video.module-image {
     text-align: center;
 }
 
-.project-skill-card img {
+.project-skill-card img,
+.project-skill-card video {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: auto;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 10px;
+    background: #000;
 }
 
 .project-skill-description {
