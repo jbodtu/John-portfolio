@@ -745,7 +745,7 @@ video.module-image {
     display: flex;
     align-items: center;
     gap: 14px;
-    width: max-content;
+    width: 100%;
     transition: transform 0.4s ease;
 }
 
@@ -754,8 +754,8 @@ video.module-image {
    ========================================= */
 
 .project-skill-card {
-    flex: 0 0 65%;
-    width: 65%;
+    flex: 0 0 calc(50% - 14px);
+    width: calc(50% - 14px);
     min-width: 0;
     align-self: flex-start;
 
@@ -838,8 +838,8 @@ video.module-image {
     }
 
     .project-skill-card {
-        flex-basis: 65%;
-        width: 65%;
+        flex-basis: calc(50% - 14px);
+        width: calc(50% - 14px);
     }
 }
 
@@ -868,8 +868,8 @@ video.module-image {
     }
 
     .project-skill-card {
-        flex-basis: 72%;
-        width: 72%;
+        flex-basis: calc(50% - 14px);
+        width: calc(50% - 14px);
     }
 
     .project-skill-overlay h5 {
