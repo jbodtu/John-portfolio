@@ -680,18 +680,24 @@ video.module-image {
     text-align: center;
 }
 
+/* Project overview: equal-width columns, independent heights */
 .project-overview {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 16px;
-    align-items: stretch;
+    align-items: center;
+    gap: 20px;
 }
 
+/* Centre the project information vertically */
 .project-information {
+    display: flex;
+    align-items: center;
     min-width: 0;
 }
 
-.project-information h4,
+.project-information p {
+    margin: 0;
+    width: 100%;.project-information h4,
 .project-skills-heading {
     margin: 0 0 12px;
     font-size: 14px;
@@ -945,4 +951,28 @@ video.module-image {
 
 .project-skills-heading {
     min-height: 20px;
+}
+
+/* Keep each main project image's original aspect ratio */
+.project-main-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 260px;
+    justify-self: center;
+    align-self: center;
+    object-fit: contain;
+    aspect-ratio: auto;
+    border-radius: 12px;
+}
+
+/* Smaller screens */
+@media (max-width: 500px) {
+    .project-overview {
+        gap: 12px;
+    }
+
+    .project-main-image {
+        max-width: 100%;
+    }
 }
