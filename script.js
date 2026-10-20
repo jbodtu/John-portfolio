@@ -372,9 +372,10 @@ if (workViewport) {
 }
 
 
-
 /* =========================================
    PROJECT SKILLS CAROUSELS
+   Images autoplay every 2s.
+   Videos autoplay and advance when ended.
    ========================================= */
 
 document.querySelectorAll(".project-carousel").forEach((carousel) => {
@@ -394,15 +395,71 @@ document.querySelectorAll(".project-carousel").forEach((carousel) => {
         `[data-project-carousel="${carouselId}"]`
     );
 
+    const imageDelay = 2000;
+
     let currentIndex = 1;
     let startX = 0;
     let startY = 0;
+    let autoplayTimer = null;
+
+    function clearAutoplayTimer() {
+        clearTimeout(autoplayTimer);
+        autoplayTimer = null;
+    }
+
+    /* Images advance on a 2s timer; videos advance on "ended". */
+    function scheduleAutoplay() {
+        clearAutoplayTimer();
+
+        const activeCard = cards[currentIndex];
+        const activeVideo = activeCard.querySelector("video");
+
+        if (activeVideo) {
+            return;
+        }
+
+        autoplayTimer = setTimeout(() => {
+            showCard(currentIndex + 1);
+        }, imageDelay);
+    }
 
     function showCard(index) {
+        clearAutoplayTimer();
+
         currentIndex = (index + cards.length) % cards.length;
 
         cards.forEach((card, i) => {
-            card.classList.toggle("active", i === currentIndex);
+            const isActive = i === currentIndex;
+            card.classList.toggle("active", isActive);
+
+            const video = card.querySelector("video");
+            if (!video) return;
+
+            if (!isActive) {
+                video.pause();
+                try {
+                    video.currentTime = 0;
+                } catch (error) {
+                    /* The video may not have loaded yet. */
+                }
+                return;
+            }
+
+            video.muted = true;
+            video.playsInline = true;
+
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    /* Autoplay blocked — fall back to the 2s timer. */
+                    if (cards[currentIndex] === card) {
+                        autoplayTimer = setTimeout(() => {
+                            showCard(currentIndex + 1);
+                        }, imageDelay);
+                    }
+                });
+            }
         });
 
         const activeCard = cards[currentIndex];
@@ -416,7 +473,36 @@ document.querySelectorAll(".project-carousel").forEach((carousel) => {
         counter.textContent =
             `${String(currentIndex + 1).padStart(2, "0")} / ` +
             `${String(cards.length).padStart(2, "0")}`;
+
+        scheduleAutoplay();
     }
+
+    /* Per-card video listeners */
+    cards.forEach((card) => {
+        const video = card.querySelector("video");
+        if (!video) return;
+
+        video.addEventListener("ended", () => {
+            if (cards[currentIndex] === card) {
+                showCard(currentIndex + 1);
+            }
+        });
+
+        video.addEventListener("play", () => {
+            if (cards[currentIndex] === card) {
+                clearAutoplayTimer();
+            }
+        });
+
+        video.addEventListener("error", () => {
+            if (cards[currentIndex] === card) {
+                clearAutoplayTimer();
+                autoplayTimer = setTimeout(() => {
+                    showCard(currentIndex + 1);
+                }, imageDelay);
+            }
+        });
+    });
 
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -428,6 +514,7 @@ document.querySelectorAll(".project-carousel").forEach((carousel) => {
 
     carousel.addEventListener("touchstart", (event) => {
         if (event.touches.length !== 1) return;
+        clearAutoplayTimer();
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
     }, { passive: true });
@@ -440,6 +527,8 @@ document.querySelectorAll(".project-carousel").forEach((carousel) => {
 
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
             showCard(currentIndex + (dx < 0 ? 1 : -1));
+        } else {
+            scheduleAutoplay();
         }
     }, { passive: true });
 
